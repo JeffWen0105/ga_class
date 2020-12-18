@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>電影購票測試</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 以下是 GA 追蹤碼 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-181848436-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments) };
+        gtag("js", new Date());
+        gtag("config", "UA-181848436-1");
+    </script>
+    <!-- 以下是 神策 追蹤碼 -->
+    <script>
+        (function (para) {
+            var p = para.sdk_url, n = para.name, w = window, d = document, s = 'script', x = null, y = null;
+            if (typeof (w['sensorsDataAnalytic201505']) !== 'undefined') {
+                return false;
+            }
+            w['sensorsDataAnalytic201505'] = n;
+            w[n] = w[n] || function (a) { return function () { (w[n]._q = w[n]._q || []).push([a, arguments]); } };
+            var ifs = ['track', 'quick', 'register', 'registerPage', 'registerOnce', 'trackSignup', 'trackAbtest', 'setProfile', 'setOnceProfile', 'appendProfile', 'incrementProfile', 'deleteProfile', 'unsetProfile', 'identify', 'login', 'logout', 'trackLink', 'clearAllRegister', 'getAppStatus'];
+            for (var i = 0; i < ifs.length; i++) {
+                w[n][ifs[i]] = w[n].call(null, ifs[i]);
+            }
+            if (!w[n]._t) {
+                x = d.createElement(s), y = d.getElementsByTagName(s)[0];
+                x.async = 1;
+                x.src = p;
+                x.setAttribute('charset', 'UTF-8');
+                w[n].para = para;
+                y.parentNode.insertBefore(x, y);
+            }
+        })({
+            sdk_url: 'https://cdn.jsdelivr.net/npm/sa-sdk-javascript@1.15.26/sensorsdata.min.js',
+            name: 'sensors',
+            server_url: 'http://sensorsdata.tw:8106/sa?project=default&token=schemaLimited-g2Kkyz8O',
+            heatmap: { scroll_notice_map: 'not_collect' },
+        });
+        sensors.quick('autoTrack');
+
+
+        try {
+            // window.location.reload();
+            var uid = location.search.slice(1).split("uid")[1].split("=")[1];
+            document.write('<br>' + "您的uid:" + uid);
+            $(document).ready(function () {
+                sensors.logout();
+            });
+            sensors.identify(uid, true)
+
+        } catch (e) {
+            document.write('<br>' + "沒採集到您的uid，您是不是非法進來的壓？？？");
+            alert("沒採集到您的uid，您是不是非法進來的壓？？？");
+            console.log("error", e);
+            $(document).ready(function () {
+                var obt = document.getElementById('thediv');
+                obt.style.display = 'none';
+            });
+        }
+
+
+    </script>
+
+    <script>
+        function trackDetail() {
+            sensors.track('detail', {
+                Name: "鬼滅之刃",
+            });
+            alert("電影細節測試~~~~");
+        }
+
+        window.onload = function () {
+            $("#Row form").submit(function (e) {
+                e.preventDefault();
+                const pid = $(this).attr("getid");
+                let getId = $('#getid').val();
+                if (getId) {
+                console.log('id:', getId);
+                sensors.login(getId)
+                alert(getId + '登入');
+                document.getElementById("buy").disabled=false;
+                }else{
+                alert("請輸入登入ID");
+                }
+            });
+        }
+
+        function trackBuy() {
+            // 送出事件紀錄
+            console.log('1223123123')
+            sensors.track('book_ticket_pay_demo', {
+                Name: "鬼滅之刃",
+            });
+            alert("電影票購買測試~~~~");
+        }
+    </script>
+</head>
+
+
+<body>
+    <h1>電影購票測試</h1>
+
+    <div id="thediv" style="display:block">
+        <ul>
+            <li>
+                <button class="btn btn-primary" onclick="trackDetail();">電影細節測試</button>
+            </li>
+
+            <li>
+                <div id="Row" class="row">
+                    <form data-product-id="test" class="card-body">
+                        <div class="form-group">
+                            <input id="getid" required class="form-control" type="text">
+                        </div>
+                        <div class="form-group">
+                            <button id="button_id" class="btn btn-primary" type="submit">登入綁定測試</button>
+                        </div>
+                    </form>
+                </div>
+            </li>
+            <li >
+                <button id="buy" class="btn btn-primary" onclick="trackBuy();" disabled="disabled">電影購票測試</button>
+            </li>
+    </div>
+    </ul>
+</body>
+
+</html>
