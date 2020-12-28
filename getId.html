@@ -35,6 +35,17 @@
                 clickmap: 'default',
             }
         });
+        
+        sensors.quick('useModulePlugin', 'SiteLinker',
+            {
+                linker: [
+                    { part_url: 'wen9077.ga', after_hash: false },
+                    { part_url: 'li2188-105.members.linode.com', after_hash: false },
+                    { part_url: 'jeffwen0105.github.io', after_hash: false }
+                ]
+            }
+        );
+        
         sensors.quick('autoTrack');
 
     </script>
