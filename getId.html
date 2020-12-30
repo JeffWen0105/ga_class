@@ -5,6 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>jeffwen0105.github.io</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
         (function (para) {
@@ -35,6 +40,7 @@
                 clickmap: 'default',
             }
         });
+        // sensors.use('Fingerprint');
         sensors.quick('useModulePlugin', 'SiteLinker',
             {
                 linker: [
@@ -44,17 +50,38 @@
                 ]
             }
         );
-        
         sensors.quick('autoTrack');
 
     </script>
 </head>
 
 <body>
-    <h1>jeffwen0105.github.io</h1>
-    <div id='uuid'>您的distinct_id:</div>
-    <button onclick="getId()">取得匿名ID</button>
-    <div>
+
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="https://wen9077.ga/">Visit wen9077.ga</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" tabindex="-1" aria-disabled="true" href="https://li2188-105.members.linode.com">Visit
+                li2188-105.members.linode.com</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" tabindex="-1" aria-disabled="true"
+                href="https://jeffwen0105.github.io/ga_class/getId.html">Visit jeffwen0105.github.io</a>
+        </li>
+    </ul>
+
+    <div class="alert alert-success" role="alert">
+        <h1>jeffwen0105.github.io</h1>
+    </div>
+    
+    <div class="card" style="width: 50rem;">
+        <div class="card-body">
+            <div id='uuid'>您的distinct_id:</div>
+            <button type="button" class="btn btn-primary" onclick="getId()">取得匿名ID</button>
+        </div>
+    </div>
+    <!-- <div>
         <a href="https://wen9077.ga/">Visit wen9077.ga</a>
     </div>
     <div>
@@ -62,7 +89,8 @@
     </div>
     <div>
         <a href="https://jeffwen0105.github.io/ga_class/getId.html">Visit jeffwen0105.github.io</a>
-    </div>
+    </div> -->
+
     <script>
         function getId() {
             $(document).ready(function () {
